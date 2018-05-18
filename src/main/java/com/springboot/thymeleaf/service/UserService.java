@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserService {
@@ -41,6 +42,13 @@ public class UserService {
 
     public void delete(long id) {
         userRepository.delete(id);
+    }
+
+    public Boolean isExist(String phone, String password) {
+        if (!Objects.isNull(userRepository.findByPhoneAndPassword(phone, password))) {
+            return true;
+        }
+        return false;
     }
 
 

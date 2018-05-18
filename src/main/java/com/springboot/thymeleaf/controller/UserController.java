@@ -28,8 +28,8 @@ public class UserController {
     }
 
     @GetMapping(value = "toAdd")
-    public String toAdd() {
-        return "user/add";
+    public ModelAndView toAdd() {
+        return new ModelAndView("user/add");
     }
 
     @PostMapping(value = "add")
@@ -39,10 +39,10 @@ public class UserController {
     }
 
     @GetMapping(value = "/{id}/toEdit")
-    public String toEdit(@PathVariable(value = "id") Long id, Model model) {
+    public ModelAndView toEdit(@PathVariable(value = "id") Long id, Model model) {
         User user = userService.findUserById(id);
         model.addAttribute("user", user);
-        return "user/edit";
+        return new ModelAndView("user/edit");
     }
 
     @PutMapping(value = "edit")
